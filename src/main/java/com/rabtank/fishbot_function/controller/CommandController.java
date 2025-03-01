@@ -5,12 +5,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
-import org.springframework.core.io.support.PropertiesLoaderUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,9 +25,11 @@ public class CommandController {
     @Autowired
     public CommandController(ApplicationContext context) {
         try {
-
-            Resource resource = new ClassPathResource("commands.properties");//加载资源文件
-            Properties properties = PropertiesLoaderUtils.loadProperties(resource);//从资源文件加载配置
+            Resource resource = new ClassPathResource("commands.properties");
+            Properties properties = new Properties();
+            try (InputStreamReader reader = new InputStreamReader(resource.getInputStream(), StandardCharsets.UTF_8)) {
+                properties.load(reader);
+            }
 
             for (String commandName : properties.stringPropertyNames()) {
                 String serviceClassName = properties.getProperty(commandName);
@@ -44,19 +47,19 @@ public class CommandController {
     }
 
     @GetMapping("/command")
-    public String executeCommand(@RequestParam List<String> command,@RequestParam String userUnionId) {
+    public List<String> executeCommand(@RequestParam List<String> command, @RequestParam String userUnionId) {
         if (command.isEmpty()) {
-            return "No command provided";
+            return List.of("noreply","No command provided");
         }
-
+    
         String commandName = command.get(0);
         List<String> args = command.subList(1, command.size());
-
+    
         CommandService service = commandServiceMap.get(commandName);
         if (service == null) {
-            return "Unknown command: " + commandName;
+            return List.of("noreply","Unknown command: " + commandName);
         }
-
+    
         return service.execute(args, userUnionId);
     }
 }
