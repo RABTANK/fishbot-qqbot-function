@@ -1,0 +1,84 @@
+{
+    "rows": [
+        {
+            "buttons": [
+                {
+                    "id": "1",
+                    "render_data": {
+                        "label": "1",
+                        "visited_label": "1"
+                    },
+                    "action": {
+                        "type": 1,
+                        "unsupport_tips": "当前版本不支持",
+                        "data":"choose_1"
+                    }
+                },
+                {
+                    "id": "2",
+                    "render_data": {
+                        "label": "2",
+                        "visited_label": "2"
+                    },
+                    "action": {
+                        "type": 1,
+                        "unsupport_tips": "当前版本不支持",
+                        "data":"choose_2"
+                    }
+                },
+                {
+                    "id": "3",
+                    "render_data": {
+                        "label": "3",
+                        "visited_label": "3"
+                    },
+                    "action": {
+                        "type": 1,
+                        "unsupport_tips": "当前版本不支持",
+                        "data":"choose_3"
+                    }
+                },
+                {
+                    "id": "4",
+                    "render_data": {
+                        "label": "4",
+                        "visited_label": "4"
+                    },
+                    "action": {
+                        "type": 1,
+                        "unsupport_tips": "当前版本不支持",
+                        "data":"choose_4"
+                    }
+                }
+            ]
+        },
+        {
+            "buttons": [
+                {
+                    "id": "5",
+                    "render_data": {
+                        "label": "⬅️上一页",
+                        "visited_label": "⬅️上一页"
+                    },
+                    "action": {
+                        "type": 1,
+                        "unsupport_tips": "当前版本不支持",
+                        "data": "pre_page"
+                    }
+                },
+                {
+                    "id": "6",
+                    "render_data": {
+                        "label": "➡️下一页",
+                        "visited_label": "➡️下一页"
+                    },
+                    "action": {
+                        "type": 1,
+                        "unsupport_tips": "当前版本不支持",
+                        "data": "next_page"
+                    }
+                }
+            ]
+        }
+    ]
+}
