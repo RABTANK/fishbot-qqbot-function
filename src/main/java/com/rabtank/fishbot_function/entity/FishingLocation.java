@@ -3,12 +3,15 @@ package com.rabtank.fishbot_function.entity;
 import java.util.List;
 
 public class FishingLocation {
-    public int id;
-    public String name;
-    public int levelRestriction;
-    public float hookDifficulty;
-    public List<Fish> fishList;
-    public String description;
+    private int id;
+    private String name;
+    private int levelRestriction;
+    private float hookDifficulty;
+    private String description;
+    private List<Fish> fishList;
+
+    public FishingLocation() {
+    }
 
     public FishingLocation(int id, String name, int levelRestriction, float hookDifficulty, List<Fish> fishList,
             String description) {
@@ -20,13 +23,74 @@ public class FishingLocation {
         this.description = description;
     }
 
-    // 仅id构造方法
-    public FishingLocation(int id) {
+    // Getters and Setters
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
         this.id = id;
     }
 
-    // 仅名字构造方法
-    public FishingLocation(String name) {
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
         this.name = name;
+    }
+
+    public int getLevelRestriction() {
+        return levelRestriction;
+    }
+
+    public void setLevelRestriction(int levelRestriction) {
+        this.levelRestriction = levelRestriction;
+    }
+
+    public float getHookDifficulty() {
+        return hookDifficulty;
+    }
+
+    public void setHookDifficulty(float hookDifficulty) {
+        this.hookDifficulty = hookDifficulty;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public List<Fish> getFishList() {
+        return fishList;
+    }
+
+    public void setFishList(List<Fish> fishList) {
+        this.fishList = fishList;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder fishDetails = new StringBuilder();
+        if (fishList != null) {
+            for (Fish fish : fishList) {
+                fishDetails.append(fish.toString()).append(", ");
+            }
+            // Remove the trailing comma and space
+            if (fishDetails.length() > 0) {
+                fishDetails.setLength(fishDetails.length() - 2);
+            }
+        }
+        return "FishingLocation{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", levelRestriction=" + levelRestriction +
+                ", hookDifficulty=" + hookDifficulty +
+                ", description='" + description + '\'' +
+                ", fishList=[" + fishDetails.toString() + "]" +
+                '}';
     }
 }
